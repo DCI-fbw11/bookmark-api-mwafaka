@@ -10,7 +10,8 @@
     "debug": "~2.6.9",
     "express": "~4.16.0",
     "lowdb": "^1.0.0",
-    "morgan": "~1.9.0"
+    "morgan": "~1.9.0",
+    "uuid": "^3.3.2"
   },
   "devDependencies": {
     "eslint": "^5.16.0",
