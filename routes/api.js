@@ -8,10 +8,15 @@ const { apiErrorMiddleware } = require("../middleware/api")
 const { sendJsonResp } = require("../helper")
 
 // Controller
-const { getBookmarks, getBookmarkByID } = require("../controller/bookmark")
+const {
+  getBookmarks,
+  getBookmarkByID,
+  postBookmark
+} = require("../controller/bookmark")
 const apiRoutes = {
   allBookmarks: "/bookmarks",
-  bookmarkByID: "/bookmark/:id"
+  bookmarkByID: "/bookmarks/:id",
+  postBookmark: "/bookmarks"
 }
 
 router.get("/", (req, res) => {
@@ -21,6 +26,7 @@ router.get("/", (req, res) => {
 router.get(apiRoutes.allBookmarks, getBookmarks)
 router.get(apiRoutes.bookmarkByID, getBookmarkByID)
 
+router.post(apiRoutes.postBookmark, postBookmark)
 router.use(sendJsonResp)
 
 router.use(apiErrorMiddleware)

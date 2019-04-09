@@ -1,4 +1,5 @@
 const db = require("../db")
+const uuidv1 = require("uuid/v1")
 
 module.exports = {
   getBookmarks: (req, res, next) => {
@@ -8,6 +9,7 @@ module.exports = {
 
     next()
   },
+
   getBookmarkByID: (req, res, next) => {
     const { id } = req.params
 
@@ -26,6 +28,25 @@ module.exports = {
 
     res.locals.response = Object.assign({}, res.locals.response || {}, {
       bookmark
+    })
+
+    next()
+  },
+
+  postBookmark: (req, res, next) => {
+    const { url, tags } = req.body
+
+    if (!url) {
+      throw new Error("No url to bookmark defined")
+    }
+
+    const newBookmark = { id: uuidv1(), url: url, createdAt: Date.now(), tags }
+    db.get("bookmarks")
+      .push(newBookmark)
+      .write()
+
+    res.locals.response = Object.assign({}, res.locals.response || {}, {
+      bookmark: newBookmark
     })
 
     next()
