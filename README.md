@@ -27,6 +27,8 @@
 
 ### Endpoints
 
+> Read about [Route parameters](https://expressjs.com/en/guide/routing.html#route-parameters)
+
 - GET
   - api/bookmarks
   - api/bookmarks/:id
